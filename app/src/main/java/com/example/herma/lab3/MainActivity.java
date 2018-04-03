@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     protected void onStart() {
         //  Register the listener
         super.onStart();
-        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR), SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         //  If the sensor changed was the rotation vector, retrieve data from it
-        if (sensorEvent.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR){
-            xAccel = -sensorEvent.values[0];
-            yAccel = sensorEvent.values[1];
+        if (sensorEvent.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+            xAccel = -sensorEvent.values[1];
+            yAccel = -sensorEvent.values[0];
             updateBall();
         }
     }
